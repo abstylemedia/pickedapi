@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 8000;
 
 const app = express();
 
-mongoose.connect(process.env.MONGODB_URL, {
+mongoose.connect(process.env.DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
