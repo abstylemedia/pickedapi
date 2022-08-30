@@ -19,26 +19,34 @@ const getIdData = (req,res) => {
     });
 };
 const createData =  async (req,res) => {
-    const { itemname,itemsize,itemweight,pickuptime,pickupprice,category,pickups,pickuptype,pickupstore,pickupcompany,pickupunit,pickupbuzzer,pickupadditional,dropcompany,dropunit,dropbuzzer,dropadditional } = req.body
+    const { itemname,dimensions, dimensionslength,dimensionsheight,dimensionswidth,itemweight,pickuptime,pickupprice,category,pickupsearch,pickuptype,pickupstore,pickupcompany,pickupunit,pickupbuzzer,pickupadditional,dropcompany,dropunit,dropbuzzer,dropadditional,delivery,selectedFile,itemweighttype,dropsearch,droptype } = req.body
     
             const newData = new client({
                 itemname: itemname,
-                itemsize: itemsize,
-                itemweight:itemweight,
-                pickuptime:pickuptime,
-                pickupprice:pickupprice,
-                category:category,
-                pickups:pickups,
-                pickuptype:pickuptype,
-                pickupstore:pickupstore,
-                pickupcompany:pickupcompany,
-                pickupunit:pickupunit,
-                pickupbuzzer:pickupbuzzer,
-                pickupadditional:pickupadditional,
-                dropcompany:dropcompany,
-                dropunit:dropunit,
-                dropbuzzer:dropbuzzer,
-                dropadditional:dropadditional
+                dimensions:dimensions,
+                dimensionslength:dimensionslength,
+                dimensionsheight:dimensionsheight,
+                dimensionswidth:dimensionswidth,
+                itemweight: itemweight,
+                itemweighttype:itemweighttype,
+                pickuptime: pickuptime,
+                pickupprice: pickupprice,
+                category: category,
+                pickupsearch: pickupsearch,
+                pickuptype: pickuptype,
+                pickupstore: pickupstore,
+                pickupcompany: pickupcompany,
+                pickupunit: pickupunit,
+                pickupbuzzer: pickupbuzzer,
+                pickupadditional: pickupadditional,
+                dropsearch: dropsearch,
+                droptype:droptype,
+                dropcompany: dropcompany,
+                dropunit: dropunit,
+                dropbuzzer: dropbuzzer,
+                dropadditional: dropadditional,
+                delivery:delivery,
+                selectedFile:selectedFile,
             })
             newData.save(err => {
                if(err){ 
