@@ -52,7 +52,7 @@ const createData =  async (req,res) => {
                if(err){ 
                 res.send(err)
                } else {
-                res.send({ message : "Successfully Insert"})
+                res.send({ message : "Order Placed Successfully"})
                }
             })
         
