@@ -1,6 +1,6 @@
 
 const { createClient, loginClient  } = require("./controllers/client");
-const { getData,getIdData,createData,deleteData}= require("./controllers/order");
+const { getData,getIdData,createData,deleteData,upData}= require("./controllers/order");
 const { createAdmin, loginAdmin  } = require("./controllers/admin")
 const router =  require("express").Router();
 router.get("/",(req,res)=> {
@@ -8,8 +8,9 @@ router.get("/",(req,res)=> {
 })
 router.get("/order",getData);
 router.post("/order",createData);
-router.put("/order/:orderId",getIdData);
-router.delete("/order/:orderId",deleteData);
+router.get("/orders/:id",getIdData);
+router.put("/orderp/:id",upData);
+router.delete("/order/:id",deleteData);
 
 router.post("/clientregister", createClient);
 router.post("/Clientlogin", loginClient);

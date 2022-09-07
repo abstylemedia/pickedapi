@@ -10,45 +10,21 @@ const getData = (req,res) =>{
     });
 };
 
-const getIdData = (req,res) => {
-    client.findById({_id: req.params.dataId},(err,data) =>{
+const getIdData = async (req,res) => {
+    const _id = req.params.id;
+    client.findById((_id), (err, data)=>{
         if(err){
-            res.send(err);
+            res.send(err)
         }
         res.json(data)
     });
-};
-const createData =  async (req,res) => {
-    const { itemname,dimensions, dimensionslength,dimensionsheight,dimensionswidth,itemweight,pickuptime,pickupprice,category,pickupsearch,pickuptype,pickupstore,pickupcompany,pickupunit,pickupbuzzer,pickupadditional,dropcompany,dropunit,dropbuzzer,dropadditional,delivery,selectedFile,itemweighttype,dropsearch,droptype } = req.body
     
-            const newData = new client({
-                itemname: itemname,
-                dimensions:dimensions,
-                dimensionslength:dimensionslength,
-                dimensionsheight:dimensionsheight,
-                dimensionswidth:dimensionswidth,
-                itemweight: itemweight,
-                itemweighttype:itemweighttype,
-                pickuptime: pickuptime,
-                pickupprice: pickupprice,
-                category: category,
-                pickupsearch: pickupsearch,
-                pickuptype: pickuptype,
-                pickupstore: pickupstore,
-                pickupcompany: pickupcompany,
-                pickupunit: pickupunit,
-                pickupbuzzer: pickupbuzzer,
-                pickupadditional: pickupadditional,
-                dropsearch: dropsearch,
-                droptype:droptype,
-                dropcompany: dropcompany,
-                dropunit: dropunit,
-                dropbuzzer: dropbuzzer,
-                dropadditional: dropadditional,
-                delivery:delivery,
-                selectedFile:selectedFile,
-            })
-            newData.save(err => {
+};
+
+
+const createData =  async (req,res) => {
+    const data = new client(req.body)
+           await data.save(err => {
                if(err){ 
                 res.send(err)
                } else {
@@ -58,8 +34,17 @@ const createData =  async (req,res) => {
         
     
  }
+ const upData = async (req,res) => {
+    const _id = req.params.id;
+       await client.findByIdAndUpdate(_id,req.body,{new: true}, )
+       .then(() => res.json({ message: "Update" }))
+    .catch((err) => res.send(err));
+        
+    
+};
  const deleteData = (req,res) =>{
-    client.deleteOne({_id : req.params.dataId})
+    const _id = req.params.id;
+    client.findByIdAndDelete(_id)
     .then(() => res.json({ message:" Deleted"}))
     .catch((err) => res.send(err));
    }
@@ -69,4 +54,5 @@ const createData =  async (req,res) => {
     getIdData,
     createData,
     deleteData,
+    upData,
 };
