@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const Table = new mongoose.Schema(
     {
+        email: String,
         category: String,
         picksearch: String,
         pickuptype: String,
